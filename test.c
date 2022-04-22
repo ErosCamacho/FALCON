@@ -22,6 +22,12 @@ void main(int argc, char** argv)
 	static unsigned char       msg[3300];
 	static unsigned char       pk[CRYPTO_PUBLICKEYBYTES], sk[CRYPTO_SECRETKEYBYTES];
 
+	unsigned char		*m, *sm, *m1;
+	unsigned long long  mlen, smlen, mlen1;
+	int                 count;
+	int                 done;
+	int                 ret_val;
+
 	int DBG = 10;
 
 	// Inicializacion de la fuente de entropia
@@ -43,7 +49,4 @@ void main(int argc, char** argv)
 		printchar("pk", pk, CRYPTO_PUBLICKEYBYTES);
 		printchar("sk", sk, CRYPTO_SECRETKEYBYTES);
 	}
-
-
-	return 0;
 }
