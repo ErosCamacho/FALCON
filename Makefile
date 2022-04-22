@@ -15,7 +15,7 @@ LDFLAGS =
 LIBS = 
 
 OBJ1 = codec.o common.o fft.o fpr.o keygen.o nist.o rng.o shake.o sign.o vrfy.o
-OBJ2 = PQCgenKAT_sign.o katrng.o
+OBJ2 = katrng.o
 OBJ3 = utilities.o test.o
 
 HEAD1 = api.h fpr.h inner.h
