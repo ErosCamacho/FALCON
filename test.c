@@ -54,6 +54,6 @@ void main(int argc, char** argv)
 	crypto_sign(sm, &smlen, m, mlen, sk);
 	if (DBG == 20) {
 		printchar("m", m, (int)mlen);
-		printchar("sm", sm, &(int)smlen);
+		printchar("sm", sm, &smlen);
 	}
 }
