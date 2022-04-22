@@ -28,6 +28,10 @@ void main(int argc, char** argv)
 	int                 done;
 	int                 ret_val;
 
+	m = (unsigned char*)calloc(mlen, sizeof(unsigned char));
+	m1 = (unsigned char*)calloc(mlen, sizeof(unsigned char));
+	sm = (unsigned char*)calloc(mlen + CRYPTO_BYTES, sizeof(unsigned char));
+
 	int DBG = 20;
 
 	// Inicializacion de la fuente de entropia
