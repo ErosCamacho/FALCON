@@ -14,56 +14,57 @@ LD = c99
 LDFLAGS = 
 LIBS = 
 
-OBJ1 = build/codec.o build/common.o build/fft.o build/fpr.o build/keygen.o build/nist.o build/rng.o build/shake.o build/sign.o build/vrfy.o
-
-OBJ2 = build/PQCgenKAT_sign.o build/katrng.o
+OBJ1 = codec.o common.o fft.o fpr.o keygen.o nist.o rng.o shake.o sign.o vrfy.o
+OBJ2 = PQCgenKAT_sign.o katrng.o
+OBJ3 = utilities.o test.o
 
 HEAD1 = api.h fpr.h inner.h
 HEAD2 = api.h katrng.h
+HEAD3 = api.h katrng.h utilities.h
 
-all: build build/kat512int
-
-build:
-	-mkdir build
+all: test_falcon
 
 clean:
-	-rm -f build/kat512int $(OBJ1) $(OBJ2)
+	-rm -f test_falcon $(OBJ1) $(OBJ2) $(OBJ3)
 
-build/kat512int: $(OBJ1) $(OBJ2)
-	$(LD) $(LDFLAGS) -o build/kat512int $(OBJ1) $(OBJ2) $(LIBS)
+test_falcon: $(OBJ1) $(OBJ2) $(OBJ3)
+	$(LD) $(LDFLAGS) -o test_falcon $(OBJ1) $(OBJ2) $(OBJ3) $(LIBS)
 
-build/codec.o: codec.c $(HEAD1)
-	$(CC) $(CFLAGS) -c -o build/codec.o codec.c
+codec.o: codec.c $(HEAD1)
+	$(CC) $(CFLAGS) -c -o codec.o codec.c
 
-build/common.o: common.c $(HEAD1)
-	$(CC) $(CFLAGS) -c -o build/common.o common.c
+common.o: common.c $(HEAD1)
+	$(CC) $(CFLAGS) -c -o common.o common.c
 
-build/fft.o: fft.c $(HEAD1)
-	$(CC) $(CFLAGS) -c -o build/fft.o fft.c
+fft.o: fft.c $(HEAD1)
+	$(CC) $(CFLAGS) -c -o fft.o fft.c
 
-build/fpr.o: fpr.c $(HEAD1)
-	$(CC) $(CFLAGS) -c -o build/fpr.o fpr.c
+fpr.o: fpr.c $(HEAD1)
+	$(CC) $(CFLAGS) -c -o fpr.o fpr.c
 
-build/keygen.o: keygen.c $(HEAD1)
-	$(CC) $(CFLAGS) -c -o build/keygen.o keygen.c
+keygen.o: keygen.c $(HEAD1)
+	$(CC) $(CFLAGS) -c -o keygen.o keygen.c
 
-build/nist.o: nist.c $(HEAD1)
-	$(CC) $(CFLAGS) -c -o build/nist.o nist.c
+nist.o: nist.c $(HEAD1)
+	$(CC) $(CFLAGS) -c -o nist.o nist.c
 
-build/rng.o: rng.c $(HEAD1)
-	$(CC) $(CFLAGS) -c -o build/rng.o rng.c
+rng.o: rng.c $(HEAD1)
+	$(CC) $(CFLAGS) -c -o rng.o rng.c
 
-build/shake.o: shake.c $(HEAD1)
-	$(CC) $(CFLAGS) -c -o build/shake.o shake.c
+shake.o: shake.c $(HEAD1)
+	$(CC) $(CFLAGS) -c -o shake.o shake.c
 
-build/sign.o: sign.c $(HEAD1)
-	$(CC) $(CFLAGS) -c -o build/sign.o sign.c
+sign.o: sign.c $(HEAD1)
+	$(CC) $(CFLAGS) -c -o sign.o sign.c
 
-build/vrfy.o: vrfy.c $(HEAD1)
-	$(CC) $(CFLAGS) -c -o build/vrfy.o vrfy.c
+vrfy.o: vrfy.c $(HEAD1)
+	$(CC) $(CFLAGS) -c -o vrfy.o vrfy.c
 
-build/PQCgenKAT_sign.o: PQCgenKAT_sign.c $(HEAD2)
-	$(CC) $(CFLAGS) -I . -DALGNAME=falcon512int -c -o build/PQCgenKAT_sign.o PQCgenKAT_sign.c
+utilities.o: utilities.c
+	$(CC) $(CFLAGS) -c -o utilities.o utilities.c
+	
+katrng.o: katrng.c $(HEAD2)
+	$(CC) $(CFLAGS) -I . -c -o katrng.o katrng.c
 
-build/katrng.o: katrng.c $(HEAD2)
-	$(CC) $(CFLAGS) -I . -c -o build/katrng.o katrng.c
+test.o: test.c
+	$(CC) $(CFLAGS) -c -o test.o test.c
