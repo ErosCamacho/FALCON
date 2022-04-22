@@ -28,7 +28,7 @@ void main(int argc, char** argv)
 	int                 done;
 	int                 ret_val;
 
-	int DBG = 10;
+	int DBG = 20;
 
 	// Inicializacion de la fuente de entropia
 	for (int i = 0; i < 48; i++)
