@@ -53,7 +53,7 @@ void main(int argc, char** argv)
 	// Firma Digital (DBG = 2X)
 	crypto_sign(sm, &smlen, m, mlen, sk);
 	if (DBG == 20) {
-		printchar("m", m, mlen);
-		printchar("sm", sm, smlen);
+		printchar("m", m, (int)mlen);
+		printchar("sm", sm, &(int)smlen);
 	}
 }
