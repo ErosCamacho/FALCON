@@ -49,4 +49,11 @@ void main(int argc, char** argv)
 		printchar("pk", pk, CRYPTO_PUBLICKEYBYTES);
 		printchar("sk", sk, CRYPTO_SECRETKEYBYTES);
 	}
+
+	// Firma Digital (DBG = 2X)
+	crypto_sign(sm, &smlen, m, mlen, sk);
+	if (DBG == 20) {
+		printchar("m", m, mlen);
+		printchar("sm", sm, smlen);
+	}
 }
