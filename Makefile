@@ -65,5 +65,5 @@ build/vrfy.o: vrfy.c $(HEAD1)
 build/PQCgenKAT_sign.o: PQCgenKAT_sign.c $(HEAD2)
 	$(CC) $(CFLAGS) -I . -DALGNAME=falcon512int -c -o build/PQCgenKAT_sign.o PQCgenKAT_sign.c
 
-build/katrng.o: ../../../KAT/generator/katrng.c $(HEAD2)
+build/katrng.o: katrng.c $(HEAD2)
 	$(CC) $(CFLAGS) -I . -c -o build/katrng.o katrng.c
